@@ -18,15 +18,22 @@ LightsOn = {
 }
 
 
+Tilesize = 32
+TestRect = {x= 0, y= 0,w= 22, h=22}
+Test = false
+
+Dirs = {"right", "left", "up", "down"}
+
 function love.load()
   Anim8 = require "lib/anim8"
   Object = require "lib/classic"
   Sti = require "lib/sti"
   bump = require "lib/bump"
-  require "face"
-  require "brakerBox"
-  require "map"
-  require "hand"
+  require "entities/face"
+  require "entities/brakerBox"
+  require "map/map"
+  require "entities/hand"
+  require "entities/wanderer"
 
   world = bump.newWorld(128)
   Mouse = {x = 0,y = 0}
@@ -38,6 +45,9 @@ function love.load()
   BrakerBox = BrakerBox()
   GameMap = Map()
   Hand = Hand()
+  Baddies = BaddieMaker()
+
+  
 
 end
 
@@ -46,6 +56,8 @@ function love.update(dt)
   BrakerBox:update(dt)
   GameMap:update(dt)
   Hand:update(dt)
+  Baddies:update(dt)
+
 end
 
 function love.draw()
@@ -53,6 +65,10 @@ function love.draw()
   Face:draw()
   BrakerBox:draw()
   Hand:draw()
+  Baddies:draw()
+  if Test == true then
+    DrawRects()
+  end
 end
 
 function love.mousemoved( x, y, dx, dy, istouch )
@@ -73,10 +89,16 @@ function love.keypressed(key)
 end
 
 
+function DrawRects()
+  love.graphics.rectangle("fill", TestRect.x, TestRect.y, TestRect.w, TestRect.h)
 
-function Click(x,y)
-
-
+    local items, len = world:getItems()
+    for i = 1, len do
+      local x, y, w, h = world:getRect(items[i])
+      love.graphics.setColor(1,0,1,.5)
+      love.graphics.rectangle("fill", x, y, w, h)
+      love.graphics.setColor(1,1,1,1)
+    end
 end
 
 
