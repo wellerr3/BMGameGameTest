@@ -9,7 +9,7 @@ function BrakerBox:new()
   self.switches = {}
   local number = 1
   local switchLoc = {x = self.x + 112,y = self.y + 64}
-  for i,v in pairs(LightsOn) do
+  for i,v in pairs(Rooms) do
     local switch = Switch(switchLoc, i)
     table.insert(self.switches, switch)
     number = number + 1
@@ -65,7 +65,7 @@ function Switch:draw()
 end
 
 function Switch:click()
-  LightsOn[self.name] = not LightsOn[self.name]
+  Rooms[self.name].lightsOn = not Rooms[self.name].lightsOn
   if self.mode == "off" then
     self.mode = "on"
   else

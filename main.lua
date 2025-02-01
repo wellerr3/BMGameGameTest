@@ -4,21 +4,124 @@ end
 -- io.stdout:setvbuf('no')
 -- starter
 
-LightsOn = {
-  entry = false,
-  bath1 = false,
-  bath2 = false,
-  bed2 = false,
-  bed1 = false,
-  living = false,
-  dining = false,
-  kitchen = false,
-  garage = false,
-  foyer = false
+Tilesize = 32
+Rooms = {
+  entry = {
+    lightsOn = false,
+    up = 32 * Tilesize,
+    down = nil,
+    right = 38 * Tilesize,
+    left = nil,
+    adjacent = {
+      up = "living",
+      right = "kitchen"
+    }
+  },
+  bath1 = {
+    lightsOn = false,
+    up = nil,
+    down = nil,
+    right = 34 * Tilesize,
+    left = nil,
+    adjacent = {
+      right = "entry"
+    }
+  },
+  bath2 = {
+    lightsOn = false,
+    up = nil,
+    down = 9 * Tilesize,
+    right = nil,
+    left = nil,
+    adjacent = {
+      down = "bed2"
+    }
+  },
+  bed2 = {
+    lightsOn = false,
+    up = 9 * Tilesize,
+    down = 12 * Tilesize,
+    right = nil,
+    left = nil,
+    adjacent = {
+      down = "living",
+      up = "bath2"
+    }
+  },
+  bed1 = {
+    lightsOn = false,
+    up = nil,
+    down = 12 * Tilesize,
+    right = nil,
+    left = nil,
+    adjacent = {
+      down = "living"
+    }
+  },
+  living = {
+    lightsOn = false,
+    up = 12 * Tilesize,
+    down = 16 * Tilesize,
+    right = nil,
+    left = nil,
+    adjacent = {
+      up = {
+        loc = 38 * Tilesize,
+        right = "bed1",
+        left = "bed2"
+      },
+      down = "kitchen"
+    }
+  },
+  dining = {
+    lightsOn = false,
+    up = 16 * Tilesize,
+    down = 20 * Tilesize,
+    right = nil,
+    left = nil,
+    adjacent = {
+      up = "living",
+      down = "kitchen"
+    }
+  },
+  kitchen = {
+    lightsOn = false,
+    up = 20 * Tilesize,
+    down = 25 * Tilesize,
+    right = 38 * Tilesize,
+    left = nil,
+    adjacent = {
+      up = "kitchen",
+      down = {
+        loc = 41 * Tilesize,
+        right = "foyer",
+        left = "garage"
+      },
+    }
+  },
+  garage = {
+    lightsOn = false,
+    up = 25 * Tilesize,
+    down = nil,
+    right = nil,
+    left = nil,
+    adjacent = {
+      up = "kitchen"
+    }
+  },
+  foyer = {
+    lightsOn = false,
+    up = 25 * Tilesize,
+    down = nil,
+    right = nil,
+    left = nil,
+    adjacent = {
+      up = "kitchen"
+    }
+  }
 }
 
 
-Tilesize = 32
 TestRect = {x= 0, y= 0,w= 22, h=22}
 Test = false
 

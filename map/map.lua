@@ -21,7 +21,7 @@ function Map:draw()
     if layer.name == "off" or layer.name == "walls" then
       self.map:drawLayer(layer)
     end
-    if LightsOn[layer.name] then
+    if Rooms[layer.name] and Rooms[layer.name].lightsOn then
       self.map:drawLayer(layer)
     end
   end
