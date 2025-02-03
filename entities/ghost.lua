@@ -13,13 +13,13 @@ end
 function Ghost:update(dt)
   Ghost.super.update(self, dt)
   if not Rooms[self.room].lightsOn then
-    self.speed = 5
+    self.speed = 200
     self.sad = false
   else
-    self.speed = 2
+    self.speed = 50
     self.sad = true
   end
-  self:move()
+  self:move(dt)
 end
 
 
@@ -33,8 +33,8 @@ function Ghost:draw()
   end
 end
 
-function Ghost:wander()
-  local px, py, offsetX, offsetY, offset = self.x, self.y, 0, 0, 20
+function Ghost:wander(dt)
+  local px, py, offsetX, offsetY, offset = 0, 0, 0, 0, 20
   if self.dir == 1 then
     px = px + self.speed
     offsetX = offset
@@ -48,17 +48,19 @@ function Ghost:wander()
     py = py + self.speed
     offsetY = offset
   end
+  px = (px*dt) + self.x
+  py =  (py*dt) + self.y
   -- if not self.sad then
   self:checkForPlug(px + offsetX, py+ offsetY)
   -- end
   return px, py
 end
 
-function Ghost:move()
+function Ghost:move(dt)
   if math.random(15) == 1 then
     self.dir = math.random(4)
   end
-  local px, py = self:wander()
+  local px, py = self:wander(dt)
   Ghost.super.getMove(self, px, py)
 end
 

@@ -12,7 +12,7 @@ function Char:new(x,y, room, name, img)
   self.grid = Anim8.newGrid(32, 32, self.spriteSheet:getWidth(), self.spriteSheet:getHeight(), 0,0,0)
   self.img= Anim8.newAnimation(self.grid('1-' .. numFramesWide, 1, numFramesWide.. '-1', 1), .125)
   self.timer = 0
-  self.speed = 5
+  self.speed = 200
   self.dir = 1
   self.moving = true
   self.properties = {}
@@ -85,7 +85,7 @@ function greaterOrLess(greater, v1, v2)
   end
 end
 
-function Char:manual()
+function Char:manual(dt)
   local speed = self.speed
   local vx, vy = 0, 0
   if love.keyboard.isDown("down") or love.keyboard.isDown("s") then
@@ -102,7 +102,7 @@ function Char:manual()
     self.dir = 1
     vx = speed
   end
-  vx = vx + self.x
-  vy = vy + self.y
+  vx = (vx *dt) + self.x
+  vy = (vy *dt) + self.y
   return vx, vy
 end

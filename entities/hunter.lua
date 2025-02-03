@@ -15,7 +15,7 @@ end
 
 function Hunter:update(dt)
   Hunter.super.update(self, dt)
-  self:move()
+  self:move(dt)
 end
 
 function Hunter:draw()
@@ -23,8 +23,8 @@ function Hunter:draw()
 end
 
 
-function Hunter:move()
-  local px, py = self:manual()
+function Hunter:move(dt)
+  local px, py = self:manual(dt)
   Hunter.super.getMove(self, px, py)
 end
 
