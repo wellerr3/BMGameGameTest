@@ -437,7 +437,7 @@ Rooms = {
 
 
 TestRect = {x= 0, y= 0,w= 22, h=22}
-Test = true
+Test = false
 
 Dirs = {"right", "left", "up", "down"}
 CurrScene = 'start'
