@@ -5,19 +5,81 @@ end
 -- starter
 
 Tilesize = 32
+DifPlugs = 3
+PlugStart = 20
+NumGhosts = 1
 Rooms = {
   entry = {
+    walls = {
+      {
+        length = 6,
+        dir = "down",
+        inside = "right",
+        start = {
+          x = 31,
+          y = 16}
+      },
+      {
+        length = 4,
+        dir = "down",
+        inside = "left",
+        start = {
+          x = 38,
+          y = 18}
+      },
+      { 
+        length = 4,
+        dir = "right",
+        inside = "up",
+        start = {
+          x = 34,
+          y = 25
+        }
+      }
+    },
     lightsOn = false,
-    up = 32 * Tilesize,
+    up = 18 * Tilesize,
     down = nil,
     right = 38 * Tilesize,
-    left = nil,
+    left = 34 * Tilesize,
     adjacent = {
       up = "living",
-      right = "kitchen"
+      right = "kitchen",
+      left = {
+        loc = 22 * Tilesize,
+        down = "bath1",
+        up = "entry"
+      }
     }
   },
   bath1 = {
+    walls = {
+      {
+        length = 3,
+        dir = "down",
+        inside = "right",
+        start = {
+          x = 31,
+          y = 22}
+      },
+      {
+        length = 3,
+        dir = "right",
+        inside = "down",
+        start = {
+          x = 31,
+          y = 22}
+      },
+      { 
+        length = 3,
+        dir = "right",
+        inside = "up",
+        start = {
+          x = 31,
+          y = 25
+        }
+      }
+    },
     lightsOn = false,
     up = nil,
     down = nil,
@@ -28,6 +90,33 @@ Rooms = {
     }
   },
   bath2 = {
+    walls = {
+      {
+        length = 4,
+        dir = "down",
+        inside = "right",
+        start = {
+          x = 35,
+          y = 3}
+      },
+      {
+        length = 3,
+        dir = "right",
+        inside = "down",
+        start = {
+          x = 35,
+          y = 3}
+      },
+      { 
+        length = 4,
+        dir = "down",
+        inside = "left",
+        start = {
+          x = 38,
+          y = 3
+        }
+      }
+    },
     lightsOn = false,
     up = nil,
     down = 9 * Tilesize,
@@ -38,6 +127,51 @@ Rooms = {
     }
   },
   bed2 = {
+    walls = {
+      {
+        length = 7,
+        dir = "down",
+        inside = "right",
+        start = {
+          x = 31,
+          y = 3}
+      },
+      {
+        length = 4,
+        dir = "right",
+        inside = "up",
+        start = {
+          x = 34,
+          y = 10}
+      },
+      { 
+        length = 4,
+        dir = "down",
+        inside = "left",
+        start = {
+          x = 35,
+          y = 3
+        }
+      },
+      {
+        length = 3,
+        dir = "down",
+        inside = "left",
+        start = {
+          x = 38,
+          y = 7
+        }
+      },
+      {
+        length = 4,
+        dir = "right",
+        inside = "up",
+        start = {
+          x = 34,
+          y = 10
+        }
+      }
+    },
     lightsOn = false,
     up = 9 * Tilesize,
     down = 12 * Tilesize,
@@ -45,10 +179,50 @@ Rooms = {
     left = nil,
     adjacent = {
       down = "living",
-      up = "bath2"
+      up = {
+        loc = 35 * Tilesize,
+        left = "bed2",
+        right = "bath2"
+      }
     }
   },
   bed1 = {
+    walls = {
+      {
+        length = 7,
+        dir = "down",
+        inside = "right",
+        start = {
+          x = 38,
+          y = 3}
+      },
+      {
+        length = 6,
+        dir = "right",
+        inside = "down",
+        start = {
+          x = 38,
+          y = 3}
+      },
+      { 
+        length = 7,
+        dir = "down",
+        inside = "left",
+        start = {
+          x = 44,
+          y = 3
+        }
+      },
+      {
+        length = 3,
+        dir = "right",
+        inside = "up",
+        start = {
+          x = 38,
+          y = 10
+        }
+      }
+    },
     lightsOn = false,
     up = nil,
     down = 12 * Tilesize,
@@ -59,8 +233,44 @@ Rooms = {
     }
   },
   living = {
+    walls = {
+      {
+        length = 6,
+        dir = "down",
+        inside = "right",
+        start = {
+          x = 31,
+          y = 10}
+      },
+      {
+        length = 7,
+        dir = "right",
+        inside = "down",
+        start = {
+          x = 34,
+          y = 10}
+      },
+      { 
+        length = 6,
+        dir = "down",
+        inside = "left",
+        start = {
+          x = 44,
+          y = 10
+        }
+      },
+      {
+        length = 7,
+        dir = "right",
+        inside = "up",
+        start = {
+          x = 34,
+          y = 16
+        }
+      }
+    },
     lightsOn = false,
-    up = 12 * Tilesize,
+    up = 10 * Tilesize,
     down = 16 * Tilesize,
     right = nil,
     left = nil,
@@ -70,10 +280,32 @@ Rooms = {
         right = "bed1",
         left = "bed2"
       },
-      down = "kitchen"
+      down = {
+        loc = 38 * Tilesize,
+        right = "dining",
+        left = "entry"
+      },
     }
   },
   dining = {
+    walls = {
+      {
+        length = 4,
+        dir = "down",
+        inside = "right",
+        start = {
+          x = 38,
+          y = 16}
+      },
+      {
+        length = 4,
+        dir = "down",
+        inside = "left",
+        start = {
+          x = 44,
+          y = 16}
+      },
+    },
     lightsOn = false,
     up = 16 * Tilesize,
     down = 20 * Tilesize,
@@ -85,21 +317,76 @@ Rooms = {
     }
   },
   kitchen = {
+    walls = {
+      {
+        length = 2,
+        dir = "down",
+        inside = "right",
+        start = {
+          x = 38,
+          y = 20}
+      },
+      {
+        length = 2,
+        dir = "right",
+        inside = "down",
+        start = {
+          x = 38,
+          y = 20}
+      },
+      { 
+        length = 5,
+        dir = "down",
+        inside = "left",
+        start = {
+          x = 44,
+          y = 20
+        }
+      }
+    },
     lightsOn = false,
     up = 20 * Tilesize,
     down = 25 * Tilesize,
-    right = 38 * Tilesize,
-    left = nil,
+    right = nil,
+    left = 38 * Tilesize,
     adjacent = {
-      up = "kitchen",
+      up = "dining",
+      left = "entry",
       down = {
         loc = 41 * Tilesize,
         right = "foyer",
         left = "garage"
-      },
+      }
     }
   },
   garage = {
+    walls = {
+      {
+        length = 3,
+        dir = "right",
+        inside = "down",
+        start = {
+          x = 35,
+          y = 25}
+      },
+      {
+        length = 7,
+        dir = "down",
+        inside = "left",
+        start = {
+          x = 41,
+          y = 25}
+      },
+      { 
+        length = 7,
+        dir = "right",
+        inside = "up",
+        start = {
+          x = 35,
+          y = 32
+        }
+      }
+    },
     lightsOn = false,
     up = 25 * Tilesize,
     down = nil,
@@ -110,6 +397,33 @@ Rooms = {
     }
   },
   foyer = {
+    walls = {
+      {
+        length = 7,
+        dir = "down",
+        inside = "right",
+        start = {
+          x = 41,
+          y = 25}
+      },
+      {
+        length = 3,
+        dir = "right",
+        inside = "up",
+        start = {
+          x = 41,
+          y = 32}
+      },
+      { 
+        length = 7,
+        dir = "down",
+        inside = "left",
+        start = {
+          x = 44,
+          y = 25
+        }
+      }
+    },
     lightsOn = false,
     up = 25 * Tilesize,
     down = nil,
@@ -123,9 +437,19 @@ Rooms = {
 
 
 TestRect = {x= 0, y= 0,w= 22, h=22}
-Test = false
+Test = true
 
 Dirs = {"right", "left", "up", "down"}
+CurrScene = 'start'
+
+function ChangeDifficulty()
+  if PlugStart > 5 then
+    PlugStart = PlugStart - 5
+  else
+    PlugStart = 2
+  end
+  NumGhosts = NumGhosts + 1
+end
 
 function love.load()
   Anim8 = require "lib/anim8"
@@ -136,42 +460,34 @@ function love.load()
   require "entities/brakerBox"
   require "map/map"
   require "entities/hand"
-  require "entities/wanderer"
-
+  require "entities/char"
+  require "entities/ghost"
+  require "entities/hunter"
+  require "entities/charMaker"
+  require "entities/plug"
+  require "scenes/scene"
+  require "scenes/gameScene"
+  Font = love.graphics.newFont("lib/RasterForgeRegular-JpBgm.ttf", 50)
+  Font2 = love.graphics.newFont("lib/RasterForgeRegular-JpBgm.ttf", 25)
+  Font3 = love.graphics.newFont("lib/RasterForgeRegular-JpBgm.ttf", 75)
   world = bump.newWorld(128)
   Mouse = {x = 0,y = 0}
   success = love.window.setMode( 1600, 1200 )
 
   love.graphics.setDefaultFilter("nearest", "nearest")
   math.randomseed(os.time())
-  Face = Face()
-  BrakerBox = BrakerBox()
-  GameMap = Map()
-  Hand = Hand()
-  Baddies = BaddieMaker()
 
-  
+  Scene = Scene()
 
 end
 
 function love.update(dt)
-  Face:update(dt)
-  BrakerBox:update(dt)
-  GameMap:update(dt)
-  Hand:update(dt)
-  Baddies:update(dt)
-
+  Scene[CurrScene]:update(dt)
 end
 
 function love.draw()
-  GameMap:draw()
-  Face:draw()
-  BrakerBox:draw()
-  Hand:draw()
-  Baddies:draw()
-  if Test == true then
-    DrawRects()
-  end
+  Scene[CurrScene]:draw()
+
 end
 
 function love.mousemoved( x, y, dx, dy, istouch )
@@ -180,15 +496,11 @@ function love.mousemoved( x, y, dx, dy, istouch )
 end
 
 function love.mousepressed(x, y, button, istouch)
-  if button == 1 then
-    Hand:click()
-  end
+  Scene[CurrScene]:mousepressed(x, y, button, istouch)
 end
 
 function love.keypressed(key)
-  if key == "escape" then
-		love.event.quit()
-	end
+  Scene[CurrScene]:keypressed(key)
 end
 
 

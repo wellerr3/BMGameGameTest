@@ -29,7 +29,7 @@ end
 function Hand:click()
   local goalX, goalY, cols, len = world:check(self, Mouse.x, Mouse.y)
   for i, v in ipairs(cols) do
-    if v.other and v.other.click then
+    if v.other and v.other.click and BrakerBox.smallBreaker.avalable then
       v.other:click()
     end
   end
